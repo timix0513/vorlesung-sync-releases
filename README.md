@@ -10,6 +10,7 @@ man Claude im Gespräch selbst zeigt.
 Hier liegen die fertigen Versionen für Mac und Windows; die App aktualisiert sich von hier.
 
 **Inhalt:** [Herunterladen](#herunterladen) · [Installieren](#installieren) ·
+[Einrichtung, Einstellungen und Hilfe](#einrichtung-einstellungen-und-hilfe) ·
 [So läuft eine Vorlesung](#so-läuft-eine-vorlesung) · [Startseite, Stundenplan und Kurse](#startseite-stundenplan-und-kurse) ·
 [Aufnehmen](#aufnehmen) · [Auswertung](#auswertung) · [Nachhören](#nachhören) ·
 [Lektüre und Reader](#lektüre-und-reader) · [Lernfortschritt](#lernfortschritt) ·
@@ -36,8 +37,48 @@ Systemeinstellungen → Datenschutz & Sicherheit → ganz unten „Dennoch öffn
 zeigt einmal eine Warnung: „Weitere Informationen“ → „Trotzdem ausführen“. Die
 Transkription läuft unter Windows auf der CPU und ist deutlich langsamer als auf dem Mac.
 
-Beim ersten Aufnehmen fragt die App nach dem Mikrofon. Das Whisper-Modell
-(`large-v3-turbo`, 1.5 GB) lädt sie bei der ersten Transkription einmalig herunter.
+Beim ersten Start führt ein Assistent durch die Einrichtung (siehe unten). Beim ersten
+Aufnehmen fragt die App nach dem Mikrofon. Das Whisper-Modell (Standard
+`large-v3-turbo`, 1.6 GB) lädt sie bei der ersten Transkription einmalig herunter.
+
+## Einrichtung, Einstellungen und Hilfe
+
+**Einrichtung.** Beim ersten Start (ab 0.6.0 auch einmal nach dem Update) führt ein
+Assistent Schritt für Schritt durch alles Wichtige: „Weiter“ (oder `Enter`) und
+„Überspringen“, oben „Zurück“ und „Später“ (`Esc`). Jede Wahl gilt sofort, nichts geht
+verloren, wenn man mittendrin aufhört. Die Schritte:
+
+1. **Mikrofon** wählen und mit „Pegel testen“ prüfen, ob es ankommt.
+2. **Wie schreibst du mit?** – *Mit dem Stift* (Platz zum Schreiben um die Folie, ohne
+   Notizfeld), *Mit der Tastatur* (Folie eingepasst, Notizfeld daneben) oder *Nur
+   zuhören* (nur die Folie, markieren mit M, F, D).
+3. **Stundenplan** – die `.ics`-Datei direkt hier importieren und den Kursen zuordnen.
+4. **Transkription** – welches Whisper-Modell.
+5. **Erinnerung** an die Vorlesung (siehe [Mitteilungen](#startseite-stundenplan-und-kurse)).
+6. **Claude als Lernbegleiter** – ein Knopf trägt Vorlesung-Sync in Claude Desktop ein,
+   der Befehl für Claude Code steht zum Kopieren daneben (siehe [MCP](#mit-claude-lernen-mcp)).
+
+Wieder öffnen: Hilfe → „Einrichtung …“.
+
+**Einstellungen.** Vorlesung-Sync → „Einstellungen …“ (`⌘,`; Windows: Datei →
+„Einstellungen …“, `Strg+,`) oder oben rechts auf der Startseite. Sie gelten für diesen
+Rechner und werden sofort gespeichert.
+
+| Einstellung | Standard | Wozu |
+|---|---|---|
+| Mikrofon | Standardmikrofon | Ein bestimmtes Mikrofon, z.B. ein USB-Mikrofon. Ein iPhone in der Nähe (gleiche Apple-ID, WLAN und Bluetooth an) erscheint auf dem Mac als eigenes Mikrofon. Fehlt das gewählte beim Start, nimmt die App das Standardmikrofon und sagt es. |
+| Qualität | 48 kbit/s | 96 oder 128 kbit/s klingen beim Nachhören voller; für die Transkription ändert es kaum etwas. Etwa 33 / 65 / 86 MB pro 90 Minuten. |
+| Pegel automatisch anpassen | an | Hebt leise Stellen an – gut fürs eingebaute Mikrofon hinten im Saal. Mit einem externen Mikrofon nahe am Prof eher aus. |
+| Wie schreibst du mit? | Tastatur | Die drei Modi wie in der Einrichtung. Jeder Schalter im Recorder lässt sich danach weiter einzeln umlegen. |
+| Tastenleiste und Erklärungen | aus | Die Leiste mit allen Tasten unter den Folien und die Erklärtexte während der Aufnahme. Aus: `?` zeigt die Tasten, wenn man sie braucht. |
+| Bei Vorlesungsbeginn melden | an, 5 min vorher | Siehe Mitteilungen. |
+| Whisper-Modell | `large-v3-turbo` | Kleiner = schneller, aber ungenauer. Unter Windows (nur CPU) ist `large-v3-turbo-q5_0` einen Versuch wert. Ein neues Modell lädt die App bei der nächsten Transkription. |
+
+Mikrofon und Pegel gelten ab der nächsten Aufnahme – während einer laufenden ab „Pause“ →
+„Fortsetzen“ –, die Qualität ab der nächsten Aufnahme.
+
+**Hilfe.** Hilfe → „Vorlesung-Sync-Hilfe“ (oder oben rechts auf der Startseite): der Ablauf
+einer Vorlesung und alle Tasten von Aufnahme, Nachhören, Großansicht und Reader.
 
 ## So läuft eine Vorlesung
 
@@ -65,6 +106,14 @@ die Karte, `×` zurück zum aktuellen.
 schlägt die Zuordnung vor, auch bei abweichenden Namen. „Neu importieren“ ersetzt die
 Termine und behält die Zuordnung, „Zuordnung“ ändert sie später. Eine Aufnahme aus dem
 Kalender heisst automatisch z.B. „VL05 Nachfrage I“ (Nummer + Thema).
+
+**Mitteilungen.** Beginnt eine Vorlesung aus dem Stundenplan (oder den Wochenterminen eines
+Kurses), die noch nicht aufgenommen ist, meldet sich die App – standardmässig 5 Minuten
+vorher. Ein Klick auf die Mitteilung legt die Vorlesung an und startet die Aufnahme.
+Während einer Aufnahme kommt keine. Das geht, solange ein Fenster der App offen ist, auch
+im Hintergrund oder minimiert. Ein- und ausschalten und den Vorlauf ändern unter
+Einstellungen; dort gibt es auch eine Probe-Mitteilung. Beim ersten Mal fragt macOS bzw.
+Windows, ob die App Mitteilungen senden darf.
 
 **Kurse.** Ein Klick auf die Kachel öffnet die Kursseite: nächste Termine, Vorlesungen,
 Lektüre, „Plan & Ordner“, Umbenennen, Entfernen.
@@ -99,12 +148,40 @@ das Weiterblättern. Eine Folie darf mehrfach und in beliebiger Reihenfolge dran
 | `B` / `Esc` | ins Notizfeld / zurück zu den Folien |
 | `R` | Platz zum Schreiben an/aus (Rand und Papier um die Folie) |
 | `V` | Fokus: nur die Folie, ohne Folienstreifen, Hinweise und Notizfeld |
+| `⇧ ←` / `⇧ →` | nur anschauen: andere Folien zeigen, ohne zu wechseln (`Esc` zurück) |
 | `Z` | die letzten 90 Sekunden als Text (`Esc` schliesst) |
+| `L` | Live-Text an/aus |
 | `Strg/⌘ Z` | letzten Strich rückgängig |
+| `?` | alle Tasten anzeigen |
 
 **Ohne Tastatur** (Surface mit Stift, Tablet): Leiste unten rechts mit ‹ ›, der
-Foliennummer (antippen und Nummer eingeben springt), Notizfeld und Fokus; rechts mittig
-die drei Marker ★ ? ≡.
+Foliennummer (antippen und Nummer eingeben springt), dem Auge (nur anschauen),
+Notizfeld, Fokus, Live-Text und `?`; rechts mittig die drei Marker ★ ? ≡.
+
+**Wenig auf dem Bildschirm.** Die Tastenleiste und die Erklärtexte sind ausgeblendet; vor
+dem Start stehen die Erklärungen da, während der Aufnahme nicht mehr. `?` oder der
+letzte Knopf unten rechts zeigt alle Tasten als Karte über der Folie. Dauerhaft
+einblenden: in dieser Karte oder unter Einstellungen.
+
+**Zur Übersicht, während die Aufnahme läuft.** „← Übersicht“ geht jederzeit – die
+Aufnahme läuft weiter. Unten steht dann eine Leiste „Aufnahme läuft“ mit der Uhr (rot,
+wenn kein Ton ankommt) und „Zur Aufnahme“. Kalender, Kurse, Reader, ältere Auswertungen,
+Einstellungen und Hilfe gehen normal; eine zweite Aufnahme starten geht nicht, und die
+laufende Vorlesung lässt sich solange nicht löschen oder umbenennen.
+
+**Nur anschauen.** Der Prof erwähnt kurz eine frühere Folie? `⇧ ←` / `⇧ →` oder das Auge
+unten rechts zeigt andere Folien, ohne dass es als Folienwechsel zählt – die Zeitstempel
+bleiben richtig, Marker und Notizen gehören weiter zur laufenden Folie. Oben steht blau
+„Vorschau“, das Thumbnail ist gestrichelt umrandet. Weiterblättern mit `←` / `→`, den
+Pfeilen oder den Thumbnails; zurück mit `Esc`, dem Auge oder „Zurück zu Folie N“. Eine
+getippte Foliennummer gilt wieder als Folienwechsel. In der Vorschau wird nicht gezeichnet.
+
+**Live-Text.** `L` oder der Knopf mit den Zeilen unten rechts öffnet rechts ein Feld, in dem
+fortlaufend erscheint, was gerade gesagt wird – ein paar Sekunden hinterher. Er nutzt
+dasselbe kleine Modell wie das Rückspulen, wird nicht gespeichert und ist nur zum
+Mitlesen da; das richtige Transkript entsteht nach der Vorlesung. „?“ an einem Satz setzt
+dort einen ?-Marker. In der Pause ruht er. Unter Windows (nur CPU) kommt er spürbar
+später.
 
 **Marker.** Gedrückt wird, *nachdem* es gesagt wurde. Danach steht ein paar Sekunden eine
 Bestätigung neben den Marker-Knöpfen: `⏎` bzw. „Text“ für ein paar Worte dazu („Warum
@@ -139,8 +216,9 @@ ersten Öffnen des Recorders im Hintergrund.
 
 **Kein Ton.** Kommt 20 Sekunden lang nichts vom Mikrofon an oder ist es weg (Headset
 abgezogen), erscheint oben eine rote Warnung, auch im Fenstertitel. „Mikrofon neu
-verbinden“ holt das aktuelle Standardmikrofon, die Aufnahme läuft ohne Unterbrechung
-weiter.
+verbinden“ holt das Mikrofon aus den Einstellungen (sonst das Standardmikrofon), die
+Aufnahme läuft ohne Unterbrechung weiter. Welches Mikrofon gerade aufnimmt, steht im
+Tooltip der Pegelanzeige oben.
 
 **Ohne Folien.** Kommen die Folien erst nach der Vorlesung: ohne PDF starten und die
 Foliennummer vom Beamer eintippen. Ins Feld daneben ein paar Stichworte, was auf der
@@ -165,9 +243,13 @@ nicht beendet. Wird ein Fenster während der Aufnahme geschlossen, warnt die App
 Nach dem Stop öffnet sich die Auswertung der Vorlesung (später über die Übersicht oder
 die Kursseite).
 
-- **Transkription:** Sprache wählen, „Transkription starten“. Läuft lokal mit Whisper; auf
-  dem Mac rechnet man mit etwa einem Siebtel der Aufnahmedauer, unter Windows länger. Sie
-  läuft weiter, auch wenn man die Seite verlässt.
+- **Transkription:** Sprache wählen, „Transkription starten“. Läuft lokal mit Whisper, mit
+  dem Modell aus den Einstellungen („ändern“ führt hin); auf dem Mac rechnet man mit etwa
+  einem Siebtel der Aufnahmedauer, unter Windows länger. Sie läuft weiter, auch wenn man
+  die Seite verlässt.
+- **Zusammenfassung:** schreibt Claude auf Wunsch (Prompt „Zusammenfassung“, siehe
+  [MCP](#3-ausprobieren)). Sie steht oben in der Auswertung, im Markdown-Export und in der
+  PDF mit Transkript; „Zurücknehmen“ holt die vorige Fassung zurück.
   „Neu transkribieren“ (z.B. mit anderer Sprache) ersetzt das Transkript.
 - **Pro Folie:** Thumbnail, Marker, Redezeit, das Gesagte und deine Notizen. Ein Klick
   öffnet die einzelnen Sätze mit Zeitstempel (Klick spielt ab), den Satz davor und danach
@@ -176,16 +258,24 @@ die Kursseite).
   zerschnitten.
 - **Markierte Stellen:** alle ★ ? ≡, offene Fragen zuerst, mit Folie und dem Gesagten der
   20 Sekunden davor; ▶ spielt ab dort.
+- **Großansicht:** „Großansicht“ oder ein Klick aufs Folienbild: die Folie gross mit allen
+  Zeichnungen, rechts das Gesagte Satz für Satz (Klick spielt ab), Marker als Knöpfe,
+  Notizen und Folientext. `←` / `→` blättert, `Leertaste` spielt die Folie ab, `Esc` zurück.
 - **Folien fehlen noch:** PDF einspielen oder aus dem Kursordner wählen. Das Transkript
   wird nur neu zugeschnitten, nicht neu transkribiert.
 - **Folienzuordnung:** Wurde ohne Folien aufgenommen, schlägt die App vor, welche
   PDF-Seite zu welcher getippten Nummer gehört (aus Stichworten, Gesagtem und
   Reihenfolge) – bitte prüfen, Seitenzahl ändern, „Zuordnung übernehmen“.
-- **Transkript exportieren:** Markdown pro Folie, mit Notizen, Markern und Stichworten –
-  gut für Obsidian, Notion oder als Vorlage für Lernkarten.
-- **PDF mit Zeichnungen:** die Folien-PDF mit allen Strichen und Notizen als echte
-  PDF-Anmerkungen (in Vorschau, Acrobat, GoodNotes einzeln lösch- und ausblendbar). Seiten
-  mit Platz zum Schreiben werden um den beschriebenen Rand grösser, kariert wie in der App.
+- **Exportieren ▾:**
+  - *PDF mit Transkript* – zum Lesen, Ausdrucken, Weitergeben: oben die Zusammenfassung,
+    dann jede Folie mit deinen Zeichnungen, darunter Notiz, markierte Stellen und das
+    Gesagte mit Zeitstempeln.
+  - *PDF mit Zeichnungen* – die Folien-PDF mit allen Strichen und Notizen als echte
+    PDF-Anmerkungen (in Vorschau, Acrobat, GoodNotes einzeln lösch- und ausblendbar).
+    Seiten mit Platz zum Schreiben werden um den beschriebenen Rand grösser, kariert wie in
+    der App.
+  - *Markdown* – pro Folie mit Notizen, Markern und Stichworten, vorne die
+    Zusammenfassung – gut für Obsidian, Notion oder als Vorlage für Lernkarten.
 
 ## Nachhören
 
@@ -280,6 +370,15 @@ Gebraucht wird [Claude Desktop](https://claude.ai/download) oder
 [Claude Code](https://claude.com/claude-code).
 
 ### 1. Vorlesung-Sync einrichten
+
+**Am einfachsten (ab 0.6.0):** Hilfe → „Einrichtung …“, Schritt „Claude als
+Lernbegleiter“ → „In Claude Desktop eintragen“. Die App trägt sich in
+`claude_desktop_config.json` ein, ändert sonst nichts daran und legt vorher eine
+Sicherungskopie daneben. Danach Claude Desktop ganz beenden und neu öffnen. Für Claude
+Code steht dort der fertige Befehl zum Kopieren. Die App muss dafür in „Programme“ liegen
+(nicht aus „Downloads“ gestartet).
+
+Von Hand geht es so:
 
 Der Server liegt im App-Paket:
 
@@ -387,6 +486,7 @@ vorlesung-sync, in Claude Code als Befehl:
 | Nachbereitung | `/mcp__vorlesung-sync__nachbereitung` | erst aus dem Kopf abrufen, dann Abgleich mit dem Gesagten, offene Fragen klären, Begriffe festhalten |
 | Syllabus | `/mcp__vorlesung-sync__syllabus` | Syllabus lesen, Lese-Aufgaben mit Fristen vorschlagen, nach Bestätigung anlegen |
 | Anki-Stand melden | `/mcp__vorlesung-sync__anki_stand` | Decks zählen und als Lernfortschritt an die App melden |
+| Zusammenfassung | `/mcp__vorlesung-sync__zusammenfassung` | Kernaussagen, Ablauf mit Folien, Begriffe, Prüfungsrelevantes und Offenes – erst nach deinem Okay in die App (ab 0.6.0) |
 
 Sonst einfach fragen: „Erklär mir meine ?-Stellen aus Mikro VL05“, „Frag mich die
 Definitionen von letzter Woche ab“, „Mach Anki-Karten zu den ★-Stellen von gestern“.
@@ -397,5 +497,6 @@ Definitionen von letzter Woche ab“, „Mach Anki-Karten zu den ★-Stellen von
 |---|---|
 | „Vorlesung-Sync läuft nicht“ / „Keine Verbindung“ | App öffnen. Claude findet sie danach von selbst wieder. |
 | „Fehler 404“ | Die App ist zu alt: Vorlesung-Sync → „Nach Updates suchen …“. |
+| „… ist kein gültiges JSON“ beim Eintragen | Die App fasst eine kaputte `claude_desktop_config.json` nicht an. Die Datei in Claude → Einstellungen → Entwickler → „Konfiguration bearbeiten“ reparieren, dann noch einmal eintragen. |
 | Server fehlt in Claude Desktop | Meist ein Komma zu viel oder zu wenig in der JSON-Datei. Danach Claude ganz beenden. Log: Mac `~/Library/Logs/Claude/mcp-server-vorlesung-sync.log`, Windows `%APPDATA%\Claude\logs\`. |
 | Anki-Werkzeuge fehlen | Ist Anki offen und das Add-on aktiv (Extras → Erweiterungen)? Für Claude Desktop: Node.js installiert? |
