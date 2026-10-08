@@ -99,14 +99,15 @@ vor Beginn rot) mit „Aufnahme starten“, sonst der nächste. Laufen zwei Kurs
 steht der andere darunter. Darunter die nächsten fälligen Lektüren mit Restzeit, der
 Lernfortschritt, die Woche als Raster (✓ aufgenommen, blass verpasst, gestrichelt
 Hinweise wie Prüfungen) und die Kurse als Kacheln. Ein Klick auf einen Termin holt ihn in
-die Karte, `×` zurück zum aktuellen. Lektüre, Lernfortschritt und Kurse lassen sich mit
+die Karte, `×` zurück zum aktuellen, ein Doppelklick öffnet den Kurs (ab 0.7.1). Lektüre, Lernfortschritt und Kurse lassen sich mit
 einem Klick auf ihren Titel zuklappen; die App merkt sich das (ab 0.7.0).
 
 **Stundenplan.** „Stundenplan importieren…“ über der Woche liest eine Kalenderdatei
 (UniPortal, Google, iCloud, Outlook). Danach ordnest du jeden Titel einem Kurs zu – als
 **Vorlesung** (aufnehmbar), **Hinweis** (Prüfung, Frist) oder **ausblenden**. Die App
-schlägt die Zuordnung vor, auch bei abweichenden Namen. „Neu importieren“ ersetzt die
-Termine und behält die Zuordnung, „Zuordnung“ ändert sie später. Eine Aufnahme aus dem
+schlägt die Zuordnung vor, auch bei abweichenden Namen. Danach liegen die Werkzeuge hinter
+dem Zahnrad ⚙ rechts über der Woche: „Neu importieren“ ersetzt die Termine und behält die
+Zuordnung, „Zuordnung“ ändert sie später, „Entfernen“ nimmt den Stundenplan heraus. Eine Aufnahme aus dem
 Kalender heisst automatisch z.B. „VL05 Nachfrage I“ (Nummer + Thema).
 
 **Mitteilungen.** Beginnt eine Vorlesung aus dem Stundenplan (oder den Wochenterminen eines
@@ -309,6 +310,8 @@ Restzeit, darunter die Texte.
 - **Aufgabe anlegen:** „+ Aufgabe“ – Text, PDF-Seiten von–bis und die Sitzung, bis zu der
   er gelesen sein soll. Verschiebt sich der Termin im Stundenplan, wandert die Frist mit.
   Aus einem Syllabus legt Claude die Aufgaben an (siehe [Prompts](#3-ausprobieren)).
+- **Als gelesen markieren:** „Gelesen“ neben einer Aufgabe markiert alle ihre Seiten auf
+  einmal – z.B. auf Papier gelesen. „✓ Gelesen“ nimmt es wieder zurück (ab 0.7.1).
 
 **Der Reader** (ab 0.7.0 neu, wie in Zotero):
 
@@ -318,20 +321,24 @@ Restzeit, darunter die Texte.
   springt zurück. Hat die PDF eigene Seitenzahlen (Buchkapitel), zeigt der Reader überall
   diese („S. 213“) – eintippen geht auch. Der Bereich der Aufgabe ist links markiert, der
   Balken oben zeigt gelesene Seiten und Restzeit, „Weiter bei S. …“ springt zur ersten
-  ungelesenen.
+  ungelesenen. „Ganzes Dokument“ in der Auswahl links zeigt das für alle Seiten.
 - **Markieren:** Text mit der Maus ziehen, dann eine Farbe (acht wie in Zotero),
   unterstreichen oder kopieren – oder eine Art: `M` ★ klausurrelevant, `F` ? nicht
   verstanden, `D` ≡ Definition, `T` These, `E` Einwand; danach gleich eine Notiz tippen.
   Auf Abbildungen und Seiten ohne Text zieht dasselbe Ziehen ein Rechteck auf (`B` immer).
   `N` heftet eine Notiz an, „Textfeld“ schreibt auf die Seite. Was eine Farbe bedeutet,
   legst du in den [Einstellungen](#einrichtung-einstellungen-und-hilfe) fest.
+- **Textmarker** (`H`, ab 0.7.1): wie in Vorschau – alles, was du markierst (ziehen oder
+  Doppelklick auf ein Wort), wird sofort in der gewählten Farbe angestrichen, ohne Leiste
+  dazwischen. Die Farbe wechselt mit dem Farbpunkt oben oder `1`–`8`.
 - **Ändern:** eine Anmerkung anklicken – Farbe, Art und Kommentar ändern, `⌫` löscht,
   `⌘Z` nimmt zurück. Bereiche lassen sich verschieben und an den Ecken ziehen.
 - **Rechts die Anmerkungen:** in Lesereihenfolge, filterbar nach Farbe, Art und Status, mit
   Zitat und Kommentar zum Bearbeiten, Status (geklärt / offen / „im Tutorat fragen“) und
   Claudes Erklärung. Ein Klick springt hin.
 - **Stift:** „Stift“ (`P`) mit Stift, Marker und Radierer – mit dem Surface-Stift oder der
-  Maus, wie auf den Folien. „Rand“ (`R`) gibt rechts neben jeder Seite kariertes Papier.
+  Maus, wie auf den Folien. „Rand“ (`R`) gibt rechts neben jeder Seite kariertes Papier –
+  pro Text, nicht für alle.
 - **Exportieren** (Menü ⋯): *PDF mit Anmerkungen* – alle Markierungen, Notizen und Striche
   als echte PDF-Anmerkungen für Vorschau, Acrobat, GoodNotes oder Zotero; *Anmerkungen als
   Markdown* – Zitate mit Seite, Kommentar und Erklärung, für Obsidian oder Claude.
@@ -339,7 +346,7 @@ Restzeit, darunter die Texte.
 | Taste | Wirkung |
 |---|---|
 | `1`–`8` | nach dem Markieren: in dieser Farbe anstreichen |
-| `H` / `U` | nach dem Markieren: anstreichen / unterstreichen |
+| `H` / `U` | nach dem Markieren: anstreichen / unterstreichen – sonst `H`: Textmarker |
 | `M` `F` `D` `T` `E` | nach dem Markieren: als ★ / ? / ≡ / These / Einwand, dann Notiz |
 | `B` / `N` | Bereich (Rechteck) / Notiz anheften – `Esc` zurück zum Text |
 | `P` / `R` | Stift / Rand zum Schreiben |
