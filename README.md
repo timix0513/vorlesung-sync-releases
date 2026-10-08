@@ -72,6 +72,7 @@ Rechner und werden sofort gespeichert.
 | Wie schreibst du mit? | Tastatur | Die drei Modi wie in der Einrichtung. Jeder Schalter im Recorder lässt sich danach weiter einzeln umlegen. |
 | Tastenleiste und Erklärungen | aus | Die Leiste mit allen Tasten unter den Folien und die Erklärtexte während der Aufnahme. Aus: `?` zeigt die Tasten, wenn man sie braucht. |
 | Bei Vorlesungsbeginn melden | an, 5 min vorher | Siehe Mitteilungen. |
+| Farben im Reader | leer | Was jede der acht Markierfarben bedeutet, z.B. Gelb „wichtig“, Rot „widerspricht“. Der Reader zeigt es bei der Farbwahl, im Markdown-Export steht es dabei, und Claude liest es mit. |
 | Whisper-Modell | `large-v3-turbo` | Kleiner = schneller, aber ungenauer. Unter Windows (nur CPU) ist `large-v3-turbo-q5_0` einen Versuch wert. Ein neues Modell lädt die App bei der nächsten Transkription. |
 
 Mikrofon und Pegel gelten ab der nächsten Aufnahme – während einer laufenden ab „Pause“ →
@@ -98,7 +99,8 @@ vor Beginn rot) mit „Aufnahme starten“, sonst der nächste. Laufen zwei Kurs
 steht der andere darunter. Darunter die nächsten fälligen Lektüren mit Restzeit, der
 Lernfortschritt, die Woche als Raster (✓ aufgenommen, blass verpasst, gestrichelt
 Hinweise wie Prüfungen) und die Kurse als Kacheln. Ein Klick auf einen Termin holt ihn in
-die Karte, `×` zurück zum aktuellen.
+die Karte, `×` zurück zum aktuellen. Lektüre, Lernfortschritt und Kurse lassen sich mit
+einem Klick auf ihren Titel zuklappen; die App merkt sich das (ab 0.7.0).
 
 **Stundenplan.** „Stundenplan importieren…“ über der Woche liest eine Kalenderdatei
 (UniPortal, Google, iCloud, Outlook). Danach ordnest du jeden Titel einem Kurs zu – als
@@ -246,7 +248,8 @@ die Kursseite).
 - **Transkription:** Sprache wählen, „Transkription starten“. Läuft lokal mit Whisper, mit
   dem Modell aus den Einstellungen („ändern“ führt hin); auf dem Mac rechnet man mit etwa
   einem Siebtel der Aufnahmedauer, unter Windows länger. Sie läuft weiter, auch wenn man
-  die Seite verlässt.
+  die Seite verlässt. Whisper wiederholt in Pausen manchmal denselben Satz oder erfindet
+  Füllsätze („Vielen Dank.“); solche Schleifen filtert die App heraus (ab 0.7.0).
 - **Zusammenfassung:** schreibt Claude auf Wunsch (Prompt „Zusammenfassung“, siehe
   [MCP](#3-ausprobieren)). Sie steht oben in der Auswertung, im Markdown-Export und in der
   PDF mit Transkript; „Zurücknehmen“ holt die vorige Fassung zurück.
@@ -298,30 +301,63 @@ dafür der Abschnitt **Lektüre**: oben die Aufgaben nach Frist mit Fortschritt 
 Restzeit, darunter die Texte.
 
 - **Texte aufnehmen:** „+ PDF“, „Aus Kursordner…“ oder PDFs auf den Abschnitt ziehen.
-  Auch ein Scan mit 600 Seiten ist sofort da – Seiten entstehen erst beim Ansehen.
+  Auch ein Scan mit 600 Seiten ist sofort da.
+- **Scans:** Hat eine PDF keinen Text (eingescannt), erkennt die App ihn im Hintergrund –
+  eingebaut, auf dem Mac mit Vision, unter Windows mit der Windows-Texterkennung. Den
+  Stand zeigen Bibliothek und Reader („Texterkennung 34/120“). Danach lässt sich im Scan
+  Text markieren und suchen wie in jeder anderen PDF (ab 0.7.0).
 - **Aufgabe anlegen:** „+ Aufgabe“ – Text, PDF-Seiten von–bis und die Sitzung, bis zu der
   er gelesen sein soll. Verschiebt sich der Termin im Stundenplan, wandert die Frist mit.
   Aus einem Syllabus legt Claude die Aufgaben an (siehe [Prompts](#3-ausprobieren)).
-- **Reader:** „Scrollen“ oder „Blättern“, Zoom mit −/+, Strg/⌘ + Mausrad oder Pinch. Der
-  Bereich der Aufgabe ist links markiert, der Balken oben zeigt gelesene Seiten und
-  Restzeit, „Weiter bei S. …“ springt zur ersten ungelesenen. Seitenzahl eintippen +
-  `Enter` springt, „PDF“ öffnet das Original.
-- **Markieren:** mit Maus oder Stift ein Rechteck aufziehen, dann die Art wählen – geht
-  auch bei Scans ohne Text. Notiz optional, `Enter` speichert, `Esc` verwirft. Rechts
-  stehen alle Stellen mit Status und gegebenenfalls Claudes Erklärung; dort lassen sie
-  sich auf geklärt / offen / „im Tutorat fragen“ setzen oder entfernen.
+
+**Der Reader** (ab 0.7.0 neu, wie in Zotero):
+
+- **Lesen:** scharf bei jedem Zoom. Zoom mit −/+, Strg/⌘ + Mausrad oder Pinch, „Breite
+  anpassen“ und „Ganze Seite“. Scrollen oder Blättern, Rand und Export im Menü ⋯. ☰ öffnet
+  links Inhaltsverzeichnis und Suche (`⌘F`). Links in der PDF funktionieren, „‹ S. …“
+  springt zurück. Hat die PDF eigene Seitenzahlen (Buchkapitel), zeigt der Reader überall
+  diese („S. 213“) – eintippen geht auch. Der Bereich der Aufgabe ist links markiert, der
+  Balken oben zeigt gelesene Seiten und Restzeit, „Weiter bei S. …“ springt zur ersten
+  ungelesenen.
+- **Markieren:** Text mit der Maus ziehen, dann eine Farbe (acht wie in Zotero),
+  unterstreichen oder kopieren – oder eine Art: `M` ★ klausurrelevant, `F` ? nicht
+  verstanden, `D` ≡ Definition, `T` These, `E` Einwand; danach gleich eine Notiz tippen.
+  Auf Abbildungen und Seiten ohne Text zieht dasselbe Ziehen ein Rechteck auf (`B` immer).
+  `N` heftet eine Notiz an, „Textfeld“ schreibt auf die Seite. Was eine Farbe bedeutet,
+  legst du in den [Einstellungen](#einrichtung-einstellungen-und-hilfe) fest.
+- **Ändern:** eine Anmerkung anklicken – Farbe, Art und Kommentar ändern, `⌫` löscht,
+  `⌘Z` nimmt zurück. Bereiche lassen sich verschieben und an den Ecken ziehen.
+- **Rechts die Anmerkungen:** in Lesereihenfolge, filterbar nach Farbe, Art und Status, mit
+  Zitat und Kommentar zum Bearbeiten, Status (geklärt / offen / „im Tutorat fragen“) und
+  Claudes Erklärung. Ein Klick springt hin.
+- **Stift:** „Stift“ (`P`) mit Stift, Marker und Radierer – mit dem Surface-Stift oder der
+  Maus, wie auf den Folien. „Rand“ (`R`) gibt rechts neben jeder Seite kariertes Papier.
+- **Exportieren** (Menü ⋯): *PDF mit Anmerkungen* – alle Markierungen, Notizen und Striche
+  als echte PDF-Anmerkungen für Vorschau, Acrobat, GoodNotes oder Zotero; *Anmerkungen als
+  Markdown* – Zitate mit Seite, Kommentar und Erklärung, für Obsidian oder Claude.
 
 | Taste | Wirkung |
 |---|---|
-| `M` / `F` / `D` | nach dem Aufziehen: ★ klausurrelevant / ? nicht verstanden / ≡ Definition |
-| `T` / `E` | These / Einwand |
-| `→` `Leertaste` / `←` | beim Blättern: nächste / vorige Seite |
+| `1`–`8` | nach dem Markieren: in dieser Farbe anstreichen |
+| `H` / `U` | nach dem Markieren: anstreichen / unterstreichen |
+| `M` `F` `D` `T` `E` | nach dem Markieren: als ★ / ? / ≡ / These / Einwand, dann Notiz |
+| `B` / `N` | Bereich (Rechteck) / Notiz anheften – `Esc` zurück zum Text |
+| `P` / `R` | Stift / Rand zum Schreiben |
+| `⌫` / `⌘Z` | Anmerkung löschen / letzte Änderung zurücknehmen |
+| `⌘F` | im Text suchen – `⏎` / `⇧⏎` nächster / voriger Treffer |
+| `←` / `→` | vorige / nächste Seite (beim Blättern auch `Leertaste`) |
 | `Home` / `End` | erste / letzte Seite |
+| `⌥←` | nach einem Link zurück |
+| `⌘+` / `⌘−` / `⌘0` | Zoom / Breite anpassen |
+
+Unter Windows `Strg` statt `⌘`. Alle Tasten stehen auch in der App unter **Hilfe**.
 
 **Lesetempo und Restzeit.** Der Reader zählt, wie lange jede Seite im Blick ist – nur
 solange das Fenster sichtbar ist und in den letzten 3 Minuten gescrollt, getippt oder
-die Maus bewegt wurde. Gelesen ist eine Seite ab 15 Sekunden. Das Tempo lernt die App pro
-Text (am Anfang 2,5 min pro Seite); Restzeit = ungelesene Seiten × Tempo.
+die Maus bewegt wurde. Gelesen ist eine Seite ab 15 Sekunden. Auf Papier gelesen? Unter
+jeder Seite und mit „Bis S. … gelesen“ lässt sie sich von Hand als gelesen (oder wieder
+ungelesen) markieren. Das Tempo lernt die App pro Text (am Anfang 2,5 min pro Seite);
+Restzeit = ungelesene Seiten × Tempo.
 
 ## Lernfortschritt
 
@@ -354,8 +390,8 @@ Ablage (Windows: Datei) → „Datenordner zeigen“ öffnet ihn. Das Log steht 
 Die App ist das Gedächtnis des Semesters, Claude der Tutor. Über einen MCP-Server, der in
 der App steckt, liest Claude Vorlesungen, Folien, Transkripte, markierte Stellen,
 Stundenplan und Lektüre – und schreibt zurück: offene Fragen als geklärt markieren (mit
-Erklärung), Begriffe anlegen, Lese-Aufgaben aus einem Syllabus anlegen, Anki-Karten mit
-ihrer Stelle verknüpfen. Alles, was Claude ändert, ist in der App als „von Claude“ zu
+Erklärung), Begriffe anlegen, Lese-Aufgaben aus einem Syllabus anlegen, Stellen in einem
+Text mit wörtlichem Zitat anstreichen, Anki-Karten mit ihrer Stelle verknüpfen. Alles, was Claude ändert, ist in der App als „von Claude“ zu
 sehen und lässt sich einzeln zurücknehmen.
 
 Es sind zwei MCP-Server, beide laufen nur lokal und Claude startet sie selbst:
